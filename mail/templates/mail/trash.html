@@ -1,0 +1,71 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'mail/css/trash.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+	<header> Trash </header>
+
+	{% if inbox %}
+	<section>
+		<h1> Inbox	</h1>
+		<ul class = "messageList">
+			{% for item in inbox %}
+			<li> 
+				<a href = "{% url 'viewTrashMessage' item.messageID %}">
+					<div class = "on"> <b> On </b> : {{ item.dateTime }} </div>
+					<div class = "from"> <b> From </b> : {{ item.sender.username }} </div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+
+	{% if sentMail %}
+	<section>
+		<h1> Sent Mail	</h1>
+		<ul class = "messageList">
+			{% for item in sentMail %}
+			<li> 
+				<a href = "{% url 'viewTrashMessage' item.message.messageID %}">
+					<div class = "on"> <b> On </b> : {{ item.message.dateTime }} </div>
+					<div class = "from"> <b> To </b> : {{ item.receivers }} </div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+
+
+	{% if draft %}
+	<section>
+		<h1> Drafts	</h1>
+		<ul class = "messageList">
+			{% for item in draft %}
+			<li>
+				<a href = "{% url 'viewTrashMessage' item.messageID %}"> 
+					<div class = "on"> <b> On </b> : {{ item.dateTime }} </div>
+					<div class = "from"> <b> Subject </b> : {{ item.subject }} </div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+	{% endif %}
+</div>
+
+<style type="text/css">
+	#trash
+	{
+		font-style: italic !important;
+		background-color: rgba(30, 80, 40, 0.9) !important;
+		color: white !important;
+	}
+</style>
+{% endblock %}

@@ -1,0 +1,32 @@
+*{
+	font-family: arial;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	box-sizing: border-box;
+}
+
+body
+{
+	padding: 500px;
+	background-color: red;
+}
+
+#mainContainer{
+	width: 750px;
+	margin: 0 auto;
+}
+
+header{
+	width: 85%;
+	text-align: center;
+	font-size: 30px;
+	padding:15px 0;
+	margin: 0 auto;
+	margin-bottom: 40px;
+	ackground-image : url("/static/common/images/Header_Background.jpg");
+	background-size: 100% 100%;
+	color: white;
+	border: double white;
+	border-top: none;
+}

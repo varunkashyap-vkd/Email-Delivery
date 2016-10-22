@@ -1,0 +1,52 @@
+{% extends 'common/base_LoggedIn.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'mail/css/viewMessage.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id = "mainContainer">
+
+	<div>
+		<div> To </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ recepients }}	{% if not recepients %} No recipients {% endif %} </p>
+	</div>
+
+	<div>
+		<div> From </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.sender.username }}	</p>
+	</div>
+
+	<div>
+		<div> On </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.dateTime }}	</p>
+	</div>
+
+	<div>
+		<div> Subject </div>	
+		<p> :&nbsp&nbsp&nbsp&nbsp {{ message.subject }}	</p>
+	</div>
+
+	<div id = "message">
+		{{ message.body }}
+	</div>
+
+	{% if message.attachment.url != None %}
+	<a href = "{{ message.attachment.url }}" id = "anchor" target = "new">
+		<img src="{{ message.attachment.url }}">
+	</a>
+	{% endif %}
+
+	<a href = "{% url 'restore' message.messageID %}" id = "delete">	Restore </a>
+</div>
+
+<style type="text/css">
+	#trash
+	{
+		font-style: italic;
+		background-color: rgba(30, 80, 40, 0.9);
+		color: white !important;
+	}
+</style>
+{% endblock %}
