@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'EmailDatabase',
 	    'HOST' : 'localhost',
     	'USER' : 'root',
-        'PASSWORD' : 'mysql',
+        'PASSWORD' : 'longclaw',
         'PORT' : 3306
     }
 }
